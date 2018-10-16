@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  materiel:
+    image: materiel
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+    - 8084:8084
+    volumes:
+    - /data/spring-boot-app
