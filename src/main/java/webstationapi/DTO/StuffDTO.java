@@ -23,7 +23,7 @@ public class StuffDTO {
         this.price = price;
     }
 
-    private List<QualityDTO> qualityDTOS = new ArrayList<>();
+    private List<QualityDTO> qualities = new ArrayList<>();
 
     public Long getStuffId() {
         return stuffId;
@@ -58,14 +58,14 @@ public class StuffDTO {
     }
 
     public List<QualityDTO> getQualityDTOS() {
-        return qualityDTOS;
+        return qualities;
     }
 
     public void setQualityDTOS(List<QualityDTO> qualityDTOS) {
-        this.qualityDTOS = qualityDTOS;
+        this.qualities = qualityDTOS;
     }
 
     public void addQualityDTOS(QualityDTO qualityDTO){
-        this.qualityDTOS.add(qualityDTO);
+        this.qualities.add(qualityDTO);
     }
 }
