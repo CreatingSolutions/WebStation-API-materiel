@@ -1,10 +1,9 @@
 package webstationapi.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import webstationapi.DTO.StuffDTO;
+import webstationapi.DTO.StuffSendDTO;
 import webstationapi.Service.StuffService;
 
 import java.util.List;
@@ -19,6 +18,11 @@ public class StuffController {
     @GetMapping
     public List<StuffDTO> getAll() {
         return this.stuffService.getAll();
+    }
+
+    @PostMapping("/add")
+    public Long addCart(@RequestBody StuffSendDTO stuffBookDTO){
+        return this.stuffService.add(stuffBookDTO);
     }
 
 }
