@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import webstationapi.DTO.QualityDTO;
 import webstationapi.DTO.StuffDTO;
+import webstationapi.DTO.StuffSendDTO;
 import webstationapi.Entity.Stuff;
+import webstationapi.Entity.StuffBook;
+import webstationapi.Repository.StuffBookRepository;
 import webstationapi.Repository.StuffRepository;
 
 import java.util.ArrayList;
@@ -15,8 +18,11 @@ public class StuffService {
 
     private StuffRepository stuffRepository;
 
-    public StuffService(StuffRepository stuffRepository) {
+    private StuffBookRepository stuffBookRepository;
+
+    public StuffService(StuffRepository stuffRepository, StuffBookRepository stuffBookRepository) {
         this.stuffRepository = stuffRepository;
+        this.stuffBookRepository = stuffBookRepository;
     }
 
     private StuffDTO buildStuffDTO(Stuff stuff) {
@@ -64,4 +70,16 @@ public class StuffService {
     }
 
 
+    public Long add(StuffSendDTO stuffBookDTO) {
+
+        Stuff stuff = this.stuffRepository.findById(stuffBookDTO.getStuffId()).get();
+
+        StuffBook stuffBook = new StuffBook();
+        stuffBook.setIdStuff(stuffBookDTO.getStuffId());
+        stuffBook.setUserId(stuffBookDTO.getUserId());
+        stuffBook.setPrice(stuffBookDTO.getTaked() * stuff.getPrice());
+
+        StuffBook save = this.stuffBookRepository.save(stuffBook);
+        return save.getId();
+    }
 }
