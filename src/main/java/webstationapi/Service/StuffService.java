@@ -82,4 +82,8 @@ public class StuffService {
         StuffBook save = this.stuffBookRepository.save(stuffBook);
         return save.getId();
     }
+
+    public List<StuffBook> getcart(int iduser) {
+        return this.stuffBookRepository.findByUserId(iduser);
+    }
 }
